@@ -13,8 +13,8 @@
         :root {
             --primary: #FF5436;
             --primary-hover: #E03E22;
-            --primary-light: #FFF0ED;
-            --primary-gradient: linear-gradient(135deg, #FF5436 0%, #FF784B 100%);
+            --primary-light: #FFF0EC;
+            --primary-gradient: linear-gradient(135deg, #FF4B2B 0%, #FF6838 50%, #FF854E 100%);
             --secondary: #F59E0B;
             --secondary-light: #FFFBEB;
             --success: #10B981;
@@ -23,16 +23,16 @@
             --nequi-magenta: #DA0081;
             --nequi-light: #FDF2F8;
             --nequi-border: #F472B6;
-            --dark: #0F172A;
-            --slate: #334155;
-            --gray: #64748B;
-            --light-gray: #F8FAFC;
-            --border: #E2E8F0;
-            --bg: #F1F5F9;
+            --dark: #1F1614;
+            --slate: #4A3B37;
+            --gray: #786460;
+            --light-gray: #FFF2ED;
+            --border: #FCE4DC;
+            --bg: #FFF8F5; /* Blanco cálido en la gama anaranjada / roja */
             --card: #FFFFFF;
-            --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
-            --shadow-lg: 0 16px 36px -6px rgba(15, 23, 42, 0.16);
+            --shadow-sm: 0 2px 8px rgba(255, 84, 54, 0.05);
+            --shadow-md: 0 8px 24px -4px rgba(255, 84, 54, 0.10);
+            --shadow-lg: 0 16px 36px -6px rgba(255, 84, 54, 0.18);
             --radius-sm: 10px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -47,7 +47,10 @@
         }
 
         body {
-            background: radial-gradient(circle at 50% 10%, #1E293B 0%, #0F172A 100%);
+            background: 
+                radial-gradient(circle at 50% 15%, rgba(255, 84, 54, 0.22) 0%, transparent 60%),
+                radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 70%),
+                radial-gradient(circle at 50% 50%, #2B181A 0%, #170E11 60%, #0B080A 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -64,11 +67,11 @@
             height: 875px;
             background-color: var(--bg);
             border-radius: 46px;
-            box-shadow: 0 25px 65px -10px rgba(0, 0, 0, 0.65), 0 0 0 10px #1E293B, 0 0 0 12px #334155;
+            box-shadow: 0 25px 65px -10px rgba(0, 0, 0, 0.7), 0 0 0 10px #2D1A1D, 0 0 0 12px #44262B, 0 0 60px rgba(255, 84, 54, 0.18);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 4px solid #0F172A;
+            border: 4px solid #1A0D10;
         }
 
         /* Barra Superior del Sistema (Status Bar) */
@@ -301,7 +304,7 @@
         }
 
         .view-screen::-webkit-scrollbar-thumb {
-            background: #CBD5E1;
+            background: #E8D5CE;
             border-radius: 4px;
         }
 
@@ -309,15 +312,61 @@
             padding-bottom: 86px;
         }
 
+        /* Degradado Cálido / Linear Gradient gama anaranjada-roja gourmet */
+        #view-login,
+        #view-register,
+        #view-forgot {
+            background: 
+                radial-gradient(ellipse 90% 45% at 50% -5%, rgba(255, 75, 43, 0.22) 0%, rgba(255, 107, 44, 0.08) 50%, transparent 75%),
+                radial-gradient(ellipse 70% 35% at 100% 35%, rgba(255, 140, 66, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 40% at 0% 90%, rgba(224, 62, 34, 0.14) 0%, transparent 65%),
+                linear-gradient(178deg, #FFFFFF 0%, #FFF8F4 22%, #FFF0E7 55%, #FFE5D9 100%);
+        }
+
+        #view-menu {
+            background: linear-gradient(180deg, #FFF6F1 0%, #FFFBF9 240px, var(--bg) 100%);
+        }
+
         /* ==========================================
            AUTENTICACIÓN PICNIS WRAPS
            ========================================== */
         .auth-container {
-            padding: 22px 20px;
+            padding: 24px 20px 30px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             min-height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .auth-brand-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 75, 43, 0.10);
+            border: 1px solid rgba(255, 75, 43, 0.22);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        .auth-brand-pill .pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 8px var(--primary);
+            animation: pulseDot 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
         }
 
         .auth-hero {
@@ -326,37 +375,66 @@
         }
 
         .auth-logo-badge {
-            width: 72px;
-            height: 72px;
+            width: 76px;
+            height: 76px;
             margin: 0 auto 12px auto;
             background: var(--primary-gradient);
-            border-radius: 22px;
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 36px;
-            box-shadow: var(--shadow-lg);
-            border: 3px solid rgba(255, 255, 255, 0.4);
+            font-size: 38px;
+            box-shadow: 0 14px 28px -6px rgba(255, 75, 43, 0.42), 0 4px 10px rgba(255, 107, 44, 0.22);
+            border: 3px solid rgba(255, 255, 255, 0.65);
+            animation: softFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes softFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         .auth-hero h1 {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 800;
             color: var(--dark);
-            letter-spacing: -0.5px;
-            margin-bottom: 4px;
+            letter-spacing: -0.6px;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .auth-hero h1 .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .auth-hero p {
             font-size: 13px;
             color: var(--gray);
-            line-height: 1.4;
+            line-height: 1.45;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor tipo Tarjeta de Alta Gama para el Formulario */
+        .auth-card-wrapper {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(255, 107, 44, 0.16);
+            border-radius: 22px;
+            padding: 20px 18px;
+            box-shadow: 0 16px 36px -12px rgba(255, 75, 43, 0.15),
+                        0 4px 14px -3px rgba(27, 20, 18, 0.04);
+            margin-bottom: 14px;
         }
 
         .auth-tabs {
             display: flex;
-            background: #E2E8F0;
+            background: rgba(255, 107, 44, 0.08);
+            border: 1px solid rgba(255, 107, 44, 0.12);
             padding: 4px;
             border-radius: 14px;
             margin-bottom: 18px;
@@ -377,8 +455,9 @@
 
         .auth-tab-btn.active {
             background: white;
-            color: var(--dark);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            color: var(--primary);
+            font-weight: 800;
+            box-shadow: 0 3px 10px rgba(255, 75, 43, 0.15);
         }
 
         .form-group {
@@ -403,7 +482,7 @@
         .input-wrapper .input-icon {
             position: absolute;
             left: 14px;
-            color: #94A3B8;
+            color: #B49B95;
             pointer-events: none;
             display: flex;
             align-items: center;
@@ -411,7 +490,7 @@
 
         .input-field {
             width: 100%;
-            padding: 11px 14px 11px 42px;
+            padding: 11.5px 14px 11.5px 42px;
             background: white;
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
@@ -423,7 +502,7 @@
 
         .input-field:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 84, 54, 0.12);
+            box-shadow: 0 0 0 3.5px rgba(255, 75, 43, 0.18);
         }
 
         .toggle-password {
@@ -431,7 +510,7 @@
             right: 12px;
             background: none;
             border: none;
-            color: #94A3B8;
+            color: #B49B95;
             cursor: pointer;
             padding: 4px;
             display: flex;
@@ -472,8 +551,8 @@
             font-size: 14.5px;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            transition: transform 0.15s ease, opacity 0.15s ease;
+            box-shadow: 0 10px 24px -4px rgba(255, 75, 43, 0.38);
+            transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -492,19 +571,22 @@
 
         .btn-outline {
             width: 100%;
-            padding: 11px;
-            background: white;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.95);
             color: var(--slate);
-            border: 1.5px solid var(--border);
+            border: 1.5px solid rgba(255, 107, 44, 0.28);
             border-radius: var(--radius-sm);
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(255, 75, 43, 0.05);
         }
 
         .btn-outline:hover {
-            background: #F1F5F9;
+            background: #FFF5F0;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .auth-divider {
@@ -512,44 +594,49 @@
             align-items: center;
             text-align: center;
             margin: 16px 0;
-            color: #94A3B8;
+            color: var(--gray);
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .auth-divider::before, .auth-divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(255, 107, 44, 0.2);
         }
 
         .auth-divider span {
-            padding: 0 10px;
+            padding: 0 12px;
         }
 
         .quick-demo-banner {
-            background: #FEF3C7;
-            border: 1px dashed #D97706;
-            border-radius: 10px;
-            padding: 9px 12px;
+            background: rgba(255, 248, 235, 0.9);
+            border: 1px dashed rgba(217, 119, 6, 0.45);
+            border-radius: 14px;
+            padding: 10px 12px;
             font-size: 11.5px;
             color: #92400E;
             margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            backdrop-filter: blur(8px);
         }
 
         .quick-demo-btn {
-            background: #D97706;
+            background: #EA580C;
             color: white;
-            border: none;
-            padding: 4px 9px;
-            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 8px;
+            border-radius: 8px;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 6px rgba(234, 88, 12, 0.2);
+        }
+
+        .quick-demo-btn:active {
+            transform: scale(0.96);
         }
 
         .back-nav-row {
@@ -2474,87 +2561,93 @@
     <div id="view-login" class="view-screen active">
         <div class="auth-container">
             <div class="auth-hero">
+                <div class="auth-brand-pill">
+                    <span class="pill-dot"></span>
+                    Picnis Wraps · Sabor Gourmet & Delivery
+                </div>
                 <div class="auth-logo-badge">
                     🌯
                 </div>
-                <h1>Picnis Wraps</h1>
-                <p>¡Los wraps más frescos, crujientes y deliciosos a tu puerta!</p>
+                <h1>Picnis <span class="gradient-text">Wraps</span></h1>
+                <p>¡Los wraps más frescos, crujientes y deliciosos directo a tu mesa!</p>
             </div>
 
-            <div class="quick-demo-banner" style="flex-direction: column; align-items: stretch; gap: 8px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 11px; font-weight: 800; color: #92400E;">⚡ Accesos Rápidos según tu Rol:</span>
-                    <span style="font-size: 9px; background: #FEF3C7; color: #B45309; padding: 1px 5px; border-radius: 4px; font-weight: 800;">3 Roles</span>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-                    <button type="button" class="quick-demo-btn" onclick="demoLoginAuto()" style="text-align: center; justify-content: center; font-size: 10px; padding: 6px 4px;">
-                        🍔 Cliente
-                    </button>
-                    <button type="button" class="quick-demo-btn" onclick="demoLoginDriver()" style="text-align: center; justify-content: center; background: #0F172A; color: #34D399; border-color: #334155; font-size: 10px; padding: 6px 4px;">
-                        🛵 Repartidor
-                    </button>
-                    <button type="button" class="quick-demo-btn" onclick="demoLoginAdmin()" style="text-align: center; justify-content: center; background: #1E1B4B; color: #A5B4FC; border-color: #3730A3; font-size: 10px; padding: 6px 4px;">
-                        👑 Admin
-                    </button>
-                </div>
-            </div>
-
-            <div class="auth-tabs">
-                <button class="auth-tab-btn active" onclick="switchAuthView('view-login')">Iniciar Sesión</button>
-                <button class="auth-tab-btn" onclick="switchAuthView('view-register')">Crear Cuenta</button>
-            </div>
-
-            <form id="form-login" onsubmit="handleLoginSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label">Usuario o Correo Electrónico</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </span>
-                        <input type="text" id="login-username" class="input-field" placeholder="ej: admin, repartidor o cliente@email.com" value="carlos_wraps" required>
+            <div class="auth-card-wrapper">
+                <div class="quick-demo-banner" style="flex-direction: column; align-items: stretch; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 11px; font-weight: 800; color: #92400E;">⚡ Roles de Demostración:</span>
+                        <span style="font-size: 9px; background: rgba(245, 158, 11, 0.16); color: #B45309; padding: 2px 6px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(245, 158, 11, 0.3);">3 Accesos</span>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Contraseña</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        </span>
-                        <input type="password" id="login-password" class="input-field" placeholder="••••••••" value="123456" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password')">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;">
+                        <button type="button" class="quick-demo-btn" onclick="demoLoginAuto()" style="text-align: center; justify-content: center; font-size: 10.5px; padding: 7px 4px;">
+                            🍔 Cliente
+                        </button>
+                        <button type="button" class="quick-demo-btn" onclick="demoLoginDriver()" style="text-align: center; justify-content: center; background: #064E3B; color: #6EE7B7; border-color: #047857; font-size: 10.5px; padding: 7px 4px; box-shadow: 0 2px 6px rgba(6, 78, 59, 0.25);">
+                            🛵 Repartidor
+                        </button>
+                        <button type="button" class="quick-demo-btn" onclick="demoLoginAdmin()" style="text-align: center; justify-content: center; background: #312E81; color: #C7D2FE; border-color: #4338CA; font-size: 10.5px; padding: 7px 4px; box-shadow: 0 2px 6px rgba(49, 46, 129, 0.25);">
+                            👑 Admin
                         </button>
                     </div>
                 </div>
 
-                <div class="auth-options-row">
-                    <label class="remember-checkbox">
-                        <input type="checkbox" id="remember-me" checked>
-                        <span>Recordarme</span>
-                    </label>
-                    <a class="forgot-link" onclick="switchAuthView('view-forgot')">¿Olvidaste tu contraseña?</a>
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" onclick="switchAuthView('view-login')">Iniciar Sesión</button>
+                    <button class="auth-tab-btn" onclick="switchAuthView('view-register')">Crear Cuenta</button>
                 </div>
 
-                <div style="font-size: 10px; color: #64748B; background: #F8FAFC; border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; margin-bottom: 12px; line-height: 1.45;">
-                    👑 <strong>Admin:</strong> usuario <code>admin</code> | clave <code>123</code><br>
-                    🛵 <strong>Repartidor:</strong> usuario <code>repartidor</code> | clave <code>123</code><br>
-                    🍔 <strong>Cliente:</strong> usuario <code>carlos_wraps</code> | clave <code>123456</code>
+                <form id="form-login" onsubmit="handleLoginSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Usuario o Correo Electrónico</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </span>
+                            <input type="text" id="login-username" class="input-field" placeholder="ej: admin, repartidor o cliente@email.com" value="carlos_wraps" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                            <input type="password" id="login-password" class="input-field" placeholder="••••••••" value="123456" required>
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('login-password')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="auth-options-row">
+                        <label class="remember-checkbox">
+                            <input type="checkbox" id="remember-me" checked>
+                            <span>Recordarme</span>
+                        </label>
+                        <a class="forgot-link" onclick="switchAuthView('view-forgot')">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <div style="font-size: 10.5px; color: #786460; background: #FFF7F4; border: 1px solid #FCE4DC; border-radius: 10px; padding: 8px 10px; margin-bottom: 14px; line-height: 1.5;">
+                        👑 <strong>Admin:</strong> usuario <code>admin</code> | clave <code>123</code><br>
+                        🛵 <strong>Repartidor:</strong> usuario <code>repartidor</code> | clave <code>123</code><br>
+                        🍔 <strong>Cliente:</strong> usuario <code>carlos_wraps</code> | clave <code>123456</code>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="btn-login-action">
+                        <span>Entrar a Picnis Wraps</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>o también</span>
                 </div>
 
-                <button type="submit" class="btn-primary" id="btn-login-action">
-                    <span>Entrar a Picnis Wraps</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <button type="button" class="btn-outline" onclick="enterAsGuest()">
+                    🚀 Explorar Menú y Promociones como Invitado
                 </button>
-            </form>
-
-            <div class="auth-divider">
-                <span>o también</span>
             </div>
-
-            <button type="button" class="btn-outline" onclick="enterAsGuest()">
-                🚀 Explorar Menú y Promociones como Invitado
-            </button>
         </div>
     </div>
 
@@ -2564,87 +2657,93 @@
     <div id="view-register" class="view-screen">
         <div class="auth-container">
             <div class="auth-hero">
+                <div class="auth-brand-pill">
+                    <span class="pill-dot"></span>
+                    ¡Bienvenido a la Experiencia Wraps!
+                </div>
                 <div class="auth-logo-badge">
                     🌯
                 </div>
-                <h1>Únete a Picnis Wraps</h1>
+                <h1>Únete a <span class="gradient-text">Picnis Wraps</span></h1>
                 <p>¡Crea tu cuenta y recibe 20% OFF en tu primer pedido de wraps!</p>
             </div>
 
-            <div class="auth-tabs">
-                <button class="auth-tab-btn" onclick="switchAuthView('view-login')">Iniciar Sesión</button>
-                <button class="auth-tab-btn active" onclick="switchAuthView('view-register')">Crear Cuenta</button>
+            <div class="auth-card-wrapper">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn" onclick="switchAuthView('view-login')">Iniciar Sesión</button>
+                    <button class="auth-tab-btn active" onclick="switchAuthView('view-register')">Crear Cuenta</button>
+                </div>
+
+                <form id="form-register" onsubmit="handleRegisterSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Nombre Completo</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </span>
+                            <input type="text" id="reg-name" class="input-field" placeholder="Carlos Mendoza" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre de Usuario</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">@</span>
+                            <input type="text" id="reg-username" class="input-field" placeholder="carlos_wraps" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Correo Electrónico</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </span>
+                            <input type="email" id="reg-email" class="input-field" placeholder="carlos@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Celular Nequi / Contacto</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📱</span>
+                            <input type="tel" id="reg-phone" class="input-field" placeholder="300 123 4567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contraseña</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                            <input type="password" id="reg-password" class="input-field" placeholder="Mínimo 6 caracteres" required>
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('reg-password')">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirmar Contraseña</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </span>
+                            <input type="password" id="reg-password-confirm" class="input-field" placeholder="Repite tu contraseña" required>
+                        </div>
+                    </div>
+
+                    <label class="remember-checkbox" style="margin-bottom: 16px;">
+                        <input type="checkbox" required checked>
+                        <span style="font-size: 11.5px;">Acepto los Términos y Condiciones de Picnis Wraps.</span>
+                    </label>
+
+                    <button type="submit" class="btn-primary">
+                        <span>Crear mi Cuenta y Obtener 20% OFF</span>
+                    </button>
+                </form>
             </div>
-
-            <form id="form-register" onsubmit="handleRegisterSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label">Nombre Completo</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </span>
-                        <input type="text" id="reg-name" class="input-field" placeholder="Carlos Mendoza" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Nombre de Usuario</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">@</span>
-                        <input type="text" id="reg-username" class="input-field" placeholder="carlos_wraps" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Correo Electrónico</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        </span>
-                        <input type="email" id="reg-email" class="input-field" placeholder="carlos@ejemplo.com" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Celular Nequi / Contacto</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📱</span>
-                        <input type="tel" id="reg-phone" class="input-field" placeholder="300 123 4567" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Contraseña</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        </span>
-                        <input type="password" id="reg-password" class="input-field" placeholder="Mínimo 6 caracteres" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('reg-password')">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label">Confirmar Contraseña</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                        </span>
-                        <input type="password" id="reg-password-confirm" class="input-field" placeholder="Repite tu contraseña" required>
-                    </div>
-                </div>
-
-                <label class="remember-checkbox" style="margin-bottom: 16px;">
-                    <input type="checkbox" required checked>
-                    <span style="font-size: 11.5px;">Acepto los Términos y Condiciones de Picnis Wraps.</span>
-                </label>
-
-                <button type="submit" class="btn-primary">
-                    <span>Crear mi Cuenta y Obtener 20% OFF</span>
-                </button>
-            </form>
         </div>
     </div>
 
@@ -2657,65 +2756,67 @@
                 <button class="back-btn" onclick="switchAuthView('view-login')">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
                 </button>
-                <h3 style="font-size: 16px; font-weight: 800;">Recuperar Contraseña</h3>
+                <h3 style="font-size: 16px; font-weight: 800; color: var(--dark);">Recuperar Contraseña</h3>
             </div>
 
-            <div id="forgot-step-1">
-                <div class="auth-hero" style="margin-top: 10px;">
-                    <div class="auth-logo-badge" style="background: linear-gradient(135deg, #F59E0B, #D97706); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);">
-                        🔑
-                    </div>
-                    <h1>¿Olvidaste tu clave?</h1>
-                    <p>Ingresa tu correo o usuario registrado en Picnis Wraps y te enviaremos un código de seguridad.</p>
-                </div>
-
-                <form onsubmit="handleForgotRequest(event)">
-                    <div class="form-group">
-                        <label class="form-label">Correo Electrónico o Usuario</label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            </span>
-                            <input type="text" id="forgot-input-account" class="input-field" placeholder="ej: carlos@ejemplo.com" value="carlos@ejemplo.com" required>
+            <div class="auth-card-wrapper">
+                <div id="forgot-step-1">
+                    <div class="auth-hero" style="margin-top: 6px;">
+                        <div class="auth-logo-badge" style="background: linear-gradient(135deg, #F59E0B, #D97706); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);">
+                            🔑
                         </div>
+                        <h1>¿Olvidaste tu clave?</h1>
+                        <p>Ingresa tu correo o usuario registrado en Picnis Wraps y te enviaremos un código de seguridad.</p>
                     </div>
 
-                    <button type="submit" class="btn-primary" style="margin-top: 10px;">
-                        <span>Enviar Código de Recuperación</span>
-                    </button>
-                </form>
-            </div>
+                    <form onsubmit="handleForgotRequest(event)">
+                        <div class="form-group">
+                            <label class="form-label">Correo Electrónico o Usuario</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </span>
+                                <input type="text" id="forgot-input-account" class="input-field" placeholder="ej: carlos@ejemplo.com" value="carlos@ejemplo.com" required>
+                            </div>
+                        </div>
 
-            <div id="forgot-step-2" style="display: none;">
-                <div class="auth-hero" style="margin-top: 10px;">
-                    <div class="auth-logo-badge" style="background: var(--success); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);">
-                        ✓
-                    </div>
-                    <h1>Código Enviado</h1>
-                    <p>Enviamos un código de 4 dígitos a tu correo. Ingrésalo a continuación:</p>
+                        <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                            <span>Enviar Código de Recuperación</span>
+                        </button>
+                    </form>
                 </div>
 
-                <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px;">
-                    <input type="text" maxlength="1" value="5" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
-                    <input type="text" maxlength="1" value="2" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
-                    <input type="text" maxlength="1" value="8" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
-                    <input type="text" maxlength="1" value="0" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
+                <div id="forgot-step-2" style="display: none;">
+                    <div class="auth-hero" style="margin-top: 6px;">
+                        <div class="auth-logo-badge" style="background: var(--success); box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);">
+                            ✓
+                        </div>
+                        <h1>Código Enviado</h1>
+                        <p>Enviamos un código de 4 dígitos a tu correo. Ingrésalo a continuación:</p>
+                    </div>
+
+                    <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 20px;">
+                        <input type="text" maxlength="1" value="5" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
+                        <input type="text" maxlength="1" value="2" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
+                        <input type="text" maxlength="1" value="8" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
+                        <input type="text" maxlength="1" value="0" style="width: 50px; height: 50px; text-align: center; font-size: 20px; font-weight: 800; border: 2px solid var(--primary); border-radius: 10px;">
+                    </div>
+
+                    <form onsubmit="handleResetPassword(event)">
+                        <div class="form-group">
+                            <label class="form-label">Nueva Contraseña</label>
+                            <input type="password" id="reset-new-pass" class="input-field" placeholder="Mínimo 6 caracteres" value="nueva123" required style="padding-left: 14px;">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Confirmar Nueva Contraseña</label>
+                            <input type="password" id="reset-confirm-pass" class="input-field" placeholder="Repite tu contraseña" value="nueva123" required style="padding-left: 14px;">
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <span>Restablecer y Entrar a Picnis Wraps</span>
+                        </button>
+                    </form>
                 </div>
-
-                <form onsubmit="handleResetPassword(event)">
-                    <div class="form-group">
-                        <label class="form-label">Nueva Contraseña</label>
-                        <input type="password" id="reset-new-pass" class="input-field" placeholder="Mínimo 6 caracteres" value="nueva123" required style="padding-left: 14px;">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Confirmar Nueva Contraseña</label>
-                        <input type="password" id="reset-confirm-pass" class="input-field" placeholder="Repite tu contraseña" value="nueva123" required style="padding-left: 14px;">
-                    </div>
-
-                    <button type="submit" class="btn-primary">
-                        <span>Restablecer y Entrar a Picnis Wraps</span>
-                    </button>
-                </form>
             </div>
         </div>
     </div>
